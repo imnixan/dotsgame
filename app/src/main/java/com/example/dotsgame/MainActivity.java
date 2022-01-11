@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -15,9 +16,9 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
-final boolean red = true;
-final boolean blue = false;
-boolean currentPlayer;
+    //red = true;
+    //blue = false;
+    boolean currentPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +33,9 @@ boolean currentPlayer;
         gameField.setBackgroundColor(Color.GREEN);
         this.addContentView(gameField, gameFieldParams);
 
-        RelativeLayout.LayoutParams dotParams = new RelativeLayout.LayoutParams(inDp(10), inDp(10));
         int step = gameFieldSize / 15;
+        RelativeLayout.LayoutParams dotParams = new RelativeLayout.LayoutParams(inDp(10), inDp(10));
+
         Dots[][] dotField = new Dots[15][15];
 
         for (int horizontal = 0; horizontal < 15; horizontal++){
@@ -43,6 +45,7 @@ boolean currentPlayer;
             }catch (Exception e){
                 prevDot = -step/2;
             }
+
 
             Dots dot  = new Dots(this, prevDot+step, step/2);
             dot.setOnClickListener(this);
@@ -78,7 +81,22 @@ boolean currentPlayer;
 
         @Override
         public void onClick(View v) {
-            v.setBackground(this.getDrawable(R.drawable.reddot));
+           if(getCurrentPlayer()){
+               v.setBackground(this.getDrawable(R.drawable.reddot));
+               v.setEnabled(false);
+               switchPlayer();
+           }else {
+               v.setBackground(this.getDrawable(R.drawable.bluedot));
+               v.setEnabled(false);
+               switchPlayer();
+           }
         }
 
+        public boolean getCurrentPlayer(){
+        return currentPlayer;
+        }
+
+        public void switchPlayer(){
+        currentPlayer=!currentPlayer;
+        }
 }

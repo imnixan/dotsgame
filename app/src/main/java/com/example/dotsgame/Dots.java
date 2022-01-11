@@ -6,6 +6,8 @@ public class Dots extends androidx.appcompat.widget.AppCompatButton {
    Context context;
    boolean ispressed = false;
    boolean isrounded = false;
+    //red = true;
+    //blue = false;
    boolean player;
    int y;
    int x;
