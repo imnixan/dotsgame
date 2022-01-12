@@ -24,31 +24,14 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        drawField();
-        Painter painter = new Painter(this, this, gameField, gameFieldSize );
-        painter.drawDots();
-       // painter.drawLines();
-
-
-
-
+        Painter painter = new Painter(this, this, getDisplay());
+        setContentView(painter);
 
     }
 
-    public void drawField(){
-        display = getWindowManager().getDefaultDisplay();
-        gameFieldSize = display.getHeight() - inDp(50);
-        gameField = new RelativeLayout(this);
-        RelativeLayout.LayoutParams gameFieldParams = new RelativeLayout.LayoutParams(gameFieldSize, gameFieldSize);
-        gameFieldParams.setMargins(inDp(10), inDp(10), inDp(10), inDp(10));
-        gameField.setBackgroundColor(Color.WHITE);
-        this.addContentView(gameField, gameFieldParams);
-    }
-
-    private int inDp(int inPx){
-        return (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, inPx, getResources().getDisplayMetrics());
+    public Display getDisplay(){
+       display = display = getWindowManager().getDefaultDisplay();
+       return display;
     }
 
         @Override
