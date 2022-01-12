@@ -4,13 +4,13 @@ import android.content.Context;
 
 public class Dots extends androidx.appcompat.widget.AppCompatButton {
    Context context;
-   boolean ispressed = false;
+
    boolean isrounded = false;
-    //red = true;
-    //blue = false;
-   boolean player;
-   int y;
-   int x;
+    //red = true = 1
+    //blue = false = 2;
+  public int player;
+   public int y;
+   public int x;
     public Dots(Context context, int horizontal, int vertical) {
         super(context);
         this.context = context;

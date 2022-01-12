@@ -21,10 +21,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     private int gameFieldSize;
     private RelativeLayout gameField;
     private Display display;
+    Painter painter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Painter painter = new Painter(this, this, getDisplay());
+        painter = new Painter(this, this, getDisplay());
         setContentView(painter);
 
     }
@@ -39,10 +40,13 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
            if(getCurrentPlayer()){
                v.setBackground(this.getDrawable(R.drawable.reddot));
                v.setEnabled(false);
+               painter.startCheckingDot(v, getCurrentPlayer());
                switchPlayer();
+
            }else {
                v.setBackground(this.getDrawable(R.drawable.bluedot));
                v.setEnabled(false);
+               painter.startCheckingDot(v,  getCurrentPlayer());
                switchPlayer();
            }
         }
